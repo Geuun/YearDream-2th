@@ -77,13 +77,16 @@ FROM teaches;
 SELECT *
 FROM instructor;
 
+SELECT ID, year
+FROM teaches
+WHERE semester = 'Fall' and year = '2008';
 
-SELECT a.name
+SELECT a.name, b.year, b.semester
 FROM instructor as a
 	INNER JOIN 
-(SELECT ID
+(SELECT ID, year, semester
 FROM teaches
-WHERE semester = 'Fall') as b
+WHERE semester = 'Fall' and year = '2008' ) as b
 	ON a.ID = b.ID;
     
 
@@ -101,14 +104,19 @@ FROM student;
 SELECT *
 FROM takes;
 
+SELECT ID, year
+FROM takes
+WHERE year = 2007;
 
-SELECT a.ID, a.name, b.year
+SELECT a.ID, a.name, b.year, a.dept_name
 FROM student as a
 	INNER JOIN
 (SELECT ID, year
 FROM takes
 WHERE year = 2007) as b
-	ON a.ID = b. ID;
+	ON a.ID = b. ID
+WHERE a.dept_name = 'Physics'
+GROUP BY a.ID;
 
 
 #----------------------------------------------------------------------------------------
@@ -139,5 +147,4 @@ FROM student;
 
 SELECT ID, name, tot_cred
 FROM student
-WHERE tot_cred = '0'
-
+WHERE tot_cred = '0';
