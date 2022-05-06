@@ -16,5 +16,5 @@ where visited_at >= '2020-07-01'
 and visited_at < '2020-08-01'
 */
 
-
+ 
 select round(11174 / 16414 * 100, 2) as 'Paying Rate'
